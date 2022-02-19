@@ -12,6 +12,13 @@
     - [Return Address](#return-address)
     - [Execution](#execution)
   - [Demo](#demo)
+- [Part2](#part2)
+  - [Vulnerability](#vulnerability-1)
+  - [Attack](#attack-1)
+  - [Challenge](#challenge)
+  - [Script](#script-1)
+    - [Execution](#execution-1)
+  - [Demo](#demo-1)
 
 # Part1
 
@@ -208,9 +215,64 @@ $ ./exploit.py
 ## Demo
 
 
+# Part2
+
+You asked us to just explain how to execute the scripts but for the sake of completeness I'll explain the whole process here. 
+
+**You can directly jump to [Execution](#execution-1) to understand how to run script.**
+
+**The link to recorded video is available in [demo](#demo-1) section.**
+
+
+**NOTE:** This code is even better commented and self-explained than *Part 1*'s script so here I'll explain less. Also please note that some of works done here are similar to *Part 1*(e.g. Finding buffer size and etc), Hence I'll avoid to repeat them and try to make the documentation short.
+
+## Vulnerability
+This code has one vulnerability which is *Buffer Overflow*. You can find this vulnerability at line `49`:
+
+```
+  fscanf(fp, "%s", input);
+```
+
+The size of `input` buffer is `100` bytes but we are reading from file without any limitation.
+
+## Attack
+
+As mentioned in the question, the *Non-Executable stack* feature is activated for this code and we should make a ROP attack.
+
+All the code we need to execute a shell is available inside the code, we should just connect this seperate parts to reach a shell.
+
+To do so, we first need to find addresses of each function and which arguments it needs. To find this information we just need `gdb` and its `disassemble` command.
+
+## Challenge
+
+The arguments of `correct_answer()` and `wrong_answer()` functions are located on the stack and before saving return address. We should some way to place a wrong return address but without any side effect to bypass this challenge.
+
+The complete solution is commented inside [script][exploit2].
+
+Just as a hint: The point we utilize here is that calling `execve` with wrong arguments results in returning `-1` and doesn't abort the process execution.
+
+## Script
+
+[Script][exploit2] is relatively simple and straight forward! we just first call the `correct_answer()` to write `/bin` into buffer, then we call `wrong_answer()` to concat `//sh` with `/bin` into buffer. Finally we call `Access_Shell()` to execute and obtain shell.
+
+**NOTE:** Refere to [Script][exploit2] and read comments to understand the details.
+
+### Execution
+The execution of [this script][exploit2] is same as [part1's script][exploit.py].
+
+To run exploit this program, you need to have `python3` installed on your system then you can run the script simply on your terminal by:
+
+```
+$ ./exploit.py
+```
+
+## Demo
+
+
 [shellstorm]: http://shell-storm.org/shellcode/
 [exploit.py]: ./part1/exploit.py
 [shellcodeAddress]:  http://shell-storm.org/shellcode/files/shellcode-806.php
 [storingCanary]: ../resources/challenge1-part1-storingCanary.png
 [checkingCanary]: ../resources/challenge1-part1-checkingCanary.png
 [savedRIP]: ../resources/challenge1-part1-savedReturnAddress.png
+[exploit2]: ./part2/exploit.py
