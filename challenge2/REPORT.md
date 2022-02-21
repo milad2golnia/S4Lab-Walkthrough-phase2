@@ -101,7 +101,7 @@ Sample input: `{{a()}}`
 
 
 ## Idea
-**Use Jinja filters:** Jinja like other Templete Engines have [filters][jinjaFilters! Some of them should be enabled explicitly by developer and some of them are enabled by default(Which are called [built-in filters][jinjaFilters]).
+**Use Jinja filters:** Jinja like other Templete Engines have [filters][jinjaFilters] Some of them should be enabled explicitly by developer and some of them are enabled by default(Which are called [built-in filters][jinjaFilters]).
 
 Since `.` character is filtered, we couldn't access the property of an object but we can use `attr` filter to bypass this filtering.
 
@@ -197,6 +197,9 @@ $ ./exploit.sh
 ```
 
 ### Demo
+Here is a demo of executing given exploit and explaining it: [Recorded Video][record]
+
+NOTE: This video contains both [Part 1](#part1) and [Part 2](#part2). Also please note it's encoded to `matroska(mkv)` format, so you may need to download it first and use a media player to play it because some browsers (excluding chromium) couldn't play this format.
 
 ## Warning
 This vunerability is really dangerous, I even can reach *parcham* of other question too just by using this vulnerability:/
@@ -486,7 +489,9 @@ Secondly, We have different types in `1 = '1' ` where clause. MySQL does type co
 
 Which is true and username is correct too! 
 
-**As you saw, we bypassed login page without entering password.**
+As you saw, we bypassed login page without entering password.
+
+**This is exactly what we learned from *Secure Software Systems* course: Every feature is a bug!**
 
 ## Script
 A simple [shell script][shellScript2] is provided to automate this process.
@@ -499,6 +504,10 @@ $ ./exploit.sh
 ```
 
 ### Demo
+Here is a demo of executing given exploit and explaining it: [Recorded Video][record]
+
+NOTE: This video contains both [Part 1](#part1) and [Part 2](#part2)! [Part 2](#part2) will be started from 00:09:15 timeframe. Also please note it's encoded to `matroska(mkv)` format, so you may need to download it first and use a media player to play it because some browsers (excluding chromium) couldn't play this format.
+
 
 [jinjaFilters]: https://jinja.palletsprojects.com/en/2.10.x/templates/#list-of-builtin-filters
 [mainFlask]: https://flask.palletsprojects.com/en/2.0.x/
@@ -517,3 +526,4 @@ $ ./exploit.sh
 [mySQLConversion]: https://dev.mysql.com/doc/refman/8.0/en/type-conversion.html
 [shellScript]: ./part1/exploit.sh
 [shellScript2]: ./part2/exploit.sh
+[record]: https://mega.nz/file/dlUiBLjJ#TgLrkoDU1UU6GLUusC8uSneww1ynFGkmHd3rvIiysGc

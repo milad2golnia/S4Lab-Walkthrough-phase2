@@ -213,7 +213,9 @@ $ ./exploit.py
 **NOTE:** After running the exploit, you need to press a key to let the script continue running then it will give you the shell.
 
 ## Demo
+Here is a demo of executing given exploit and explaining it: [Recorded Video][record]
 
+NOTE: This video contains both [Part 1](#part1) and [Part 2](#part2).
 
 # Part2
 
@@ -267,6 +269,9 @@ $ ./exploit.py
 ```
 
 ## Demo
+Here is a demo of executing given exploit and explaining it: [Recorded Video][record]
+
+NOTE: This video contains both [Part 1](#part1) and [Part 2](#part2). The [Part 2](#part2) will be started from 00:07:00 timestamp.
 
 
 [shellstorm]: http://shell-storm.org/shellcode/
@@ -276,3 +281,4 @@ $ ./exploit.py
 [checkingCanary]: ../resources/challenge1-part1-checkingCanary.png
 [savedRIP]: ../resources/challenge1-part1-savedReturnAddress.png
 [exploit2]: ./part2/exploit.py
+[record]: https://mega.nz/file/o4MGzJAY#DJuW-vKNXfwWPx_EIPYb79g3-ILyK55IW_e8nBIR1vQ
